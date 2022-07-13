@@ -4,11 +4,10 @@ from datetime import datetime
 
 def main():
     print("Hi, welcome to my python alarm! \n")
-    user_time_type()
-    if user_time_type == 12:
-        print("Yes!")
+    if user_time_type() == 12:
+        print(now.strftime("It is currently %I:%M:%S PM EST"))
     else:
-        print("no!")
+        print(now.strftime("It is currently %H:%M:%S"))
 
 
 def user_time_type():
@@ -51,16 +50,6 @@ def user_time_type():
 
                 else:
                     print("\nPlease enter y or n!")
-
-
-def twelve_hour_clock():
-    if user_time_type == 12:
-        print(now.strftime("It is currently %I:%M:%S PM EST"))
-
-
-def twenty_four_hour_clock():
-    if user_time_type == 24:
-        print(now.strftime("It is currently %H:%M:%S"))
 
 
 today = date.today()
