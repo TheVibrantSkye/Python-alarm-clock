@@ -51,5 +51,9 @@ def user_time_type():
                 else:
                     print("\nPlease enter y or n!")
 
+
+today = date.today()
+now = datetime.now()
+
 if __name__ == "__main__":
     main()
