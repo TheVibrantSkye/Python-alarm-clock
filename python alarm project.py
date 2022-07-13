@@ -29,15 +29,15 @@ def user_time_type():
 
         if user_time_type_choice == "12":
             while True:
-                user_time_type_confirmation = input("Is 12 hour format correct? y/n \n") # noqa
+                user_time_type_confirmation = input("Is 12 hour format correct? y/n \n").lower() # noqa
 
-                if user_time_type_confirmation == "y":
+                if user_time_type_confirmation == "y".lower():
                     print("\n12 hour format selected!")
                     placeholder_state = False
                     user_time_selection = 12
                     return user_time_selection
 
-                elif user_time_type_confirmation == "n":
+                elif user_time_type_confirmation == "n".lower():
                     print("\nBack to type selection!")
                     break
 
@@ -46,20 +46,25 @@ def user_time_type():
 
         elif user_time_type_choice == "24":
             while True:
-                user_time_type_confirmation = input("Is 24 hour format okay? y/n \n") # noqa
+                user_time_type_confirmation = input("Is 24 hour format okay? y/n \n").lower() # noqa
 
-                if user_time_type_confirmation == "y":
+                if user_time_type_confirmation == "y".lower():
                     print("\n24 hour format selected!")
                     placeholder_state = False
                     user_time_selection = 24
                     return user_time_selection
 
-                elif user_time_type_confirmation == "n":
+                elif user_time_type_confirmation == "n".lower():
                     print("\nBack to type selection!")
                     break
 
                 else:
                     print("\nPlease enter y or n!")
+
+
+def alarm_timer():
+    alarm_duration = input("\nHow many minutes before the alarm?")
+    pass
 
 
 today = date.today()
