@@ -1,13 +1,21 @@
 from datetime import date
 from datetime import datetime
+import time
 
 
 def main():
     print("Hi, welcome to my python alarm! \n")
-    if user_time_type() == 12:
-        print(now.strftime("It is currently %I:%M:%S PM EST"))
-    else:
-        print(now.strftime("It is currently %H:%M:%S"))
+    sx = user_time_type()
+    while True:
+        if sx == 12:
+            localtime = time.localtime()
+            result = time.strftime("\nIt is currently %I:%M:%S %p EST", localtime) # noqa
+            print(result)
+            time.sleep(60)
+        else:
+            result = time.strftime("\nIt is currently %H:%M:%S", localtime)
+            print(result)
+            time.sleep(60)
 
 
 def user_time_type():
