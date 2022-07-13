@@ -42,7 +42,8 @@ def user_time_type():
                 if user_time_type_confirmation == "y":
                     print("\n24 hour format selected!")
                     placeholder_state = False
-                    break
+                    user_time_selection = 24
+                    return user_time_selection
 
                 elif user_time_type_confirmation == "n":
                     print("\nBack to type selection!")
