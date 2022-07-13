@@ -51,17 +51,5 @@ def user_time_type():
                 else:
                     print("\nPlease enter y or n!")
 
-
-today = date.today()
-d2 = today.strftime("Today's date is %B %d, %Y")
-print(d2)
-
-now = datetime.now()
-time_test_12_hour = now.strftime("It is currently %I:%M:%S PM EST")
-print(time_test_12_hour)
-
-time_test_24_hour = now.strftime("It is currently %H:%M:%S")
-print(time_test_24_hour)
-
 if __name__ == "__main__":
     main()
