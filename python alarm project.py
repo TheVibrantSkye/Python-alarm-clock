@@ -63,12 +63,22 @@ def user_time_type():
 
 
 def alarm_timer():
-    alarm_duration = input("\nHow many minutes before the alarm?")
+    '''The purpose of this is to take the time in minutes until the user
+    wants the alarm to go off. For example alarm_timer() 15,
+    so 15 minutes then have the alarm go off'''
+    alarm_duration = int(input("How many minutes before the alarm?\n"))
+    # Python handles sleep in seconds, need to make time conversion.
+    alarm_duration_fixed = (alarm_duration * 60)
+    print(f"I will wait for {alarm_duration} minute(s)")
+    # Figure out event.wait and how to use wait, because wait is better than sleep.
+    event.wait(alarm_duration_fixed)
+    print("Ding ding ding! Alarm!")
     pass
 
 
 today = date.today()
 now = datetime.now()
-
-if __name__ == "__main__":
-    main()
+event = threading.Event()
+alarm_timer()
+# if __name__ == "__main__":
+#    main()
