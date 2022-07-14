@@ -70,7 +70,7 @@ def alarm_timer():
     # Python handles sleep in seconds, need to make time conversion.
     alarm_duration_fixed = (alarm_duration * 60)
     print(f"I will wait for {alarm_duration} minute(s)")
-    # Figure out event.wait and how to use wait, because wait is better than sleep.
+    # Figure out event.wait and how to use wait, because wait is better than sleep. # noqa
     event.wait(alarm_duration_fixed)
     print("Ding ding ding! Alarm!")
     pass
