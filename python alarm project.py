@@ -78,6 +78,7 @@ def time_plus_sleep(test_value):
             print(result)
             time.sleep(60)
         else:
+            localtime = time.localtime()
             result = time.strftime("\nIt is currently %H:%M:%S", localtime)
             print(result)
             time.sleep(60)
