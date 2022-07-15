@@ -9,12 +9,8 @@ def main():
     test_value = user_time_type()
     threads = []
     threads.append(test_value)
-    t1 = threading.Thread(target=time_plus_sleep, args=threads)
-    t2 = threading.Thread(target=alarm_timer)
-    t1.start()
-    t2.start()
-    t1.join()
-    t2.join()
+    threading.Thread(target=time_plus_sleep, args=threads).start()
+    threading.Thread(target=alarm_timer).start()
 
 
 def user_time_type():

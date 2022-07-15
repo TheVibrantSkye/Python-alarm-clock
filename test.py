@@ -5,9 +5,9 @@ start = time.perf_counter()
 finish = time.perf_counter()
 
 
-def do_something(seconds):
-    print(f"Sleeping for {seconds} second(s)...")
-    time.sleep(seconds)
+def do_something():
+    print("Sleeping for 1 second(s)...")
+    time.sleep(1)
     print("Done sleeping")
 
 
@@ -21,17 +21,10 @@ t1 = threading.Thread(target=do_something)
 t2 = threading.Thread(target=do_something)
 # t3 = threading.Thread(target=ask_question)
 
-threads = []
-
-for _ in range(10):
-    t = threading.Thread(target=do_something, args=[1.5])
-    t.start()
-    threads.append(t)
-
-
-for thread in threads:
-    thread.join()
-
+t1.start()
+t2.start()
+t1.join()
+t2.join()
 
 # t3.start()
 # t3.join()
