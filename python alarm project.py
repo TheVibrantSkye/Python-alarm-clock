@@ -59,16 +59,16 @@ def user_time_type():
                 else:
                     print("\nPlease enter y or n!")
 
+# TODO: Figure out how to make alarm timer repeatedly ask once it finishes, add an escape. # noqa
+
 
 def alarm_timer():
     '''The purpose of this is to take the time in minutes until the user
     wants the alarm to go off. For example alarm_timer() 15,
     so 15 minutes then have the alarm go off'''
     alarm_duration = int(input("How many minutes before the alarm?\n"))
-    # Python handles sleep in seconds, need to make time conversion.
     alarm_duration_fixed = (alarm_duration * 60)
     print(f"I will wait for {alarm_duration} minute(s)")
-    # Figure out event.wait and how to use wait, because wait is better than sleep. # noqa
     time.sleep(alarm_duration_fixed)
     print("Ding ding ding! Alarm!")
     pass
