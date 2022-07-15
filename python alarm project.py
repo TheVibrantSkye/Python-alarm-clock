@@ -6,17 +6,15 @@ import threading
 
 def main():
     print("Hi, welcome to my python alarm! \n")
-    sx = user_time_type()
-    while True:
-        if sx == 12:
-            localtime = time.localtime()
-            result = time.strftime("\nIt is currently %I:%M:%S %p EST", localtime) # noqa
-            print(result)
-            time.sleep(60)
-        else:
-            result = time.strftime("\nIt is currently %H:%M:%S", localtime)
-            print(result)
-            time.sleep(60)
+    test_value = user_time_type()
+    threads = []
+    threads.append(test_value)
+    t1 = threading.Thread(target=time_plus_sleep, args=threads)
+    t2 = threading.Thread(target=alarm_timer)
+    t1.start()
+    t2.start()
+    t1.join()
+    t2.join()
 
 
 def user_time_type():
@@ -71,14 +69,27 @@ def alarm_timer():
     alarm_duration_fixed = (alarm_duration * 60)
     print(f"I will wait for {alarm_duration} minute(s)")
     # Figure out event.wait and how to use wait, because wait is better than sleep. # noqa
-    event.wait(alarm_duration_fixed)
+    time.sleep(alarm_duration_fixed)
     print("Ding ding ding! Alarm!")
     pass
+
+
+def time_plus_sleep(test_value):
+    while True:
+        if test_value == 12:
+            localtime = time.localtime()
+            result = time.strftime("\nIt is currently %I:%M:%S %p EST", localtime) # noqa
+            print(result)
+            time.sleep(60)
+        else:
+            result = time.strftime("\nIt is currently %H:%M:%S", localtime)
+            print(result)
+            time.sleep(60)
 
 
 today = date.today()
 now = datetime.now()
 event = threading.Event()
-alarm_timer()
-# if __name__ == "__main__":
-#    main()
+# alarm_timer()
+if __name__ == "__main__":
+    main()

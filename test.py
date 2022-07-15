@@ -5,9 +5,9 @@ start = time.perf_counter()
 finish = time.perf_counter()
 
 
-def do_something():
-    print("Sleeping for 1 second...")
-    time.sleep(1)
+def do_something(seconds):
+    print(f"Sleeping for {seconds} second(s)...")
+    time.sleep(seconds)
     print("Done sleeping")
 
 
@@ -24,7 +24,7 @@ t2 = threading.Thread(target=do_something)
 threads = []
 
 for _ in range(10):
-    t = threading.Thread(target=do_something)
+    t = threading.Thread(target=do_something, args=[1.5])
     t.start()
     threads.append(t)
 
