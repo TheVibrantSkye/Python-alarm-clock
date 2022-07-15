@@ -6,17 +6,11 @@ import threading
 
 def main():
     print("Hi, welcome to my python alarm! \n")
-    sx = user_time_type()
-    while True:
-        if sx == 12:
-            localtime = time.localtime()
-            result = time.strftime("\nIt is currently %I:%M:%S %p EST", localtime) # noqa
-            print(result)
-            time.sleep(60)
-        else:
-            result = time.strftime("\nIt is currently %H:%M:%S", localtime)
-            print(result)
-            time.sleep(60)
+    test_value = user_time_type()
+    threads = []
+    threads.append(test_value)
+    threading.Thread(target=time_plus_sleep, args=threads).start()
+    threading.Thread(target=alarm_timer).start()
 
 
 def user_time_type():
@@ -61,24 +55,37 @@ def user_time_type():
                 else:
                     print("\nPlease enter y or n!")
 
+# TODO: Figure out how to make alarm timer repeatedly ask once it finishes, add an escape. # noqa
+
 
 def alarm_timer():
     '''The purpose of this is to take the time in minutes until the user
     wants the alarm to go off. For example alarm_timer() 15,
     so 15 minutes then have the alarm go off'''
     alarm_duration = int(input("How many minutes before the alarm?\n"))
-    # Python handles sleep in seconds, need to make time conversion.
     alarm_duration_fixed = (alarm_duration * 60)
     print(f"I will wait for {alarm_duration} minute(s)")
-    # Figure out event.wait and how to use wait, because wait is better than sleep. # noqa
-    event.wait(alarm_duration_fixed)
+    time.sleep(alarm_duration_fixed)
     print("Ding ding ding! Alarm!")
     pass
+
+
+def time_plus_sleep(test_value):
+    while True:
+        if test_value == 12:
+            localtime = time.localtime()
+            result = time.strftime("\nIt is currently %I:%M:%S %p EST", localtime) # noqa
+            print(result)
+            time.sleep(60)
+        else:
+            result = time.strftime("\nIt is currently %H:%M:%S", localtime)
+            print(result)
+            time.sleep(60)
 
 
 today = date.today()
 now = datetime.now()
 event = threading.Event()
-alarm_timer()
-# if __name__ == "__main__":
-#    main()
+# alarm_timer()
+if __name__ == "__main__":
+    main()
