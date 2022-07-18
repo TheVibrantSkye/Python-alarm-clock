@@ -15,6 +15,7 @@ def alarm_timer():
             if alarm_duration == "exit":
                 print("The alarm will now exit.")
                 break
+
             alarm_duration_fixed = int(alarm_duration)
             alarm_duration_fixed = (alarm_duration_fixed * 60)
             print(f"I will wait for {alarm_duration} minute(s)")
@@ -23,6 +24,7 @@ def alarm_timer():
         except Exception:
             print("There was an error somewhere!")
             pass
+
             print(f"I will wait for {alarm_duration} minute(s)")
             time.sleep(alarm_duration_fixed)
             print("Ding ding ding! Alarm!")
