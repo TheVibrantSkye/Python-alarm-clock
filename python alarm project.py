@@ -10,6 +10,8 @@ def main():
     threads = []
     threads.append(test_value)
     threading.Thread(target=time_plus_sleep, args=threads).start()
+    print("""\nIf you want to stop the alarm please type exit.
+If you want to exit the program please type quit.""")
     threading.Thread(target=alarm_timer).start()
 
 
@@ -62,12 +64,13 @@ def alarm_timer():
     '''The purpose of this is to take the time in minutes until the user
     wants the alarm to go off. For example alarm_timer() 15,
     so 15 minutes then have the alarm go off'''
-    alarm_duration = int(input("How many minutes before the alarm?\n"))
-    alarm_duration_fixed = (alarm_duration * 60)
-    print(f"I will wait for {alarm_duration} minute(s)")
-    time.sleep(alarm_duration_fixed)
-    print("Ding ding ding! Alarm!")
-    pass
+    time_placeholder_state = True
+    while time_placeholder_state == True: # noqa
+        alarm_duration = int(input("How many minutes before the alarm?\n"))
+        alarm_duration_fixed = (alarm_duration * 60)
+        print(f"I will wait for {alarm_duration} minute(s)")
+        time.sleep(alarm_duration_fixed)
+        print("Ding ding ding! Alarm!")
 
 
 def time_plus_sleep(test_value):
