@@ -4,6 +4,7 @@ from tkinter import *
 root = Tk() # noqa
 root.title("My calculator")
 root.iconbitmap(r'C:\Users\Douglas Napier\Desktop\pocket watch.ico')
+root['bg'] = 'black'
 
 e = Entry(root, width=35, borderwidth=5, bg="grey", fg="white")
 e.grid(row=0, column=0, columnspan=3, padx=10, pady=10)
