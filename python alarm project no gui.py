@@ -1,36 +1,18 @@
 from datetime import date
 from datetime import datetime
-from tkinter import *
-from tkinter import ttk
 import time
 import threading
 
-root = Tk() # noqa
-root.title("Python Alarm!")
-root.geometry("500x250")
-root.iconbitmap(r'pocket watch.ico')
-root['bg'] = 'black'
 
-
-def create_window():
-    win = Toplevel(root)
-    win.geometry("500x250")
-    win.title("Time type and preferences")
-
-    yes_button = Button(win, text="Yes", padx=40, pady=20, bg="grey", fg="white")
-    yes_button.grid(row=1, column=0)
-
-    no_button = Button(win, text ="No", padx=40, pady=20, bg="grey", fg="white")
-    no_button.grid(row=1, column=1)
-
-start_program_button = Button(root, text='Start program', command=create_window, padx=40, pady=20, bg="grey", fg="white")
-start_program_button.grid(row=1, column=0)
-
-# e = Entry(root, width=35, borderwidth=5, bg="grey", fg="white")
-# e.grid(row=1, column=0, columnspan=3, padx=10, pady=10)
-
-test_label = Label(root, text='Welcome to my test!', bg="grey", fg="white")
-test_label.grid(row=0, column=0)
+def main():
+    print("Hi, welcome to my python alarm! \n")
+    test_value = user_time_type()
+    threads = []
+    threads.append(test_value)
+    threading.Thread(target=time_plus_sleep, args=threads).start()
+    print("""\nIf you want to stop the alarm please type exit.
+If you want to exit the program please type quit.""")
+    threading.Thread(target=alarm_timer).start()
 
 
 def user_time_type():
@@ -75,5 +57,39 @@ def user_time_type():
                 else:
                     print("\nPlease enter y or n!")
 
+# TODO: Figure out how to make alarm timer repeatedly ask once it finishes, add an escape. # noqa
 
-root.mainloop()
+
+def alarm_timer():
+    '''The purpose of this is to take the time in minutes until the user
+    wants the alarm to go off. For example alarm_timer() 15,
+    so 15 minutes then have the alarm go off'''
+    time_placeholder_state = True
+    while time_placeholder_state == True: # noqa
+        alarm_duration = int(input("How many minutes before the alarm?\n"))
+        alarm_duration_fixed = (alarm_duration * 60)
+        print(f"I will wait for {alarm_duration} minute(s)")
+        time.sleep(alarm_duration_fixed)
+        print("Ding ding ding! Alarm!")
+
+
+def time_plus_sleep(test_value):
+    while True:
+        if test_value == 12:
+            localtime = time.localtime()
+            result = time.strftime("\nIt is currently %I:%M:%S %p EST", localtime) # noqa
+            print(result)
+            time.sleep(60)
+        else:
+            localtime = time.localtime()
+            result = time.strftime("\nIt is currently %H:%M:%S", localtime)
+            print(result)
+            time.sleep(60)
+
+
+today = date.today()
+now = datetime.now()
+event = threading.Event()
+# alarm_timer()
+if __name__ == "__main__":
+    main()
